@@ -49,8 +49,11 @@ final class TextValidatorTests: XCTestCase {
         let mock1 = TestValidator(uniqueID: "1")
         let mock2 = TestValidator(uniqueID: "2")
 
-        applyTest(subject: .init(arrayLiteral: mock1, mock2), [mock1, mock2])
-        applyTest(subject: [mock1, mock2], [mock1, mock2])
+        let mockV1 = TextValidator(mock1)
+        let mockV2 = TextValidator(mock2)
+
+        applyTest(subject: .init(arrayLiteral: mockV1, mockV2), [mock1, mock2])
+        applyTest(subject: [mockV1, mockV2], [mock1, mock2])
         applyTest(subject: .init([mock1, mock2]), [mock1, mock2])
         applyTest(subject: .init(mock1), [mock1])
         applyTest(subject: .init(validators: [TextValidator(mock1), TextValidator(mock2)]), [mock1, mock2])
@@ -59,7 +62,7 @@ final class TextValidatorTests: XCTestCase {
         applyTest(subject: mock1 + TextValidator(mock2), [mock1, mock2])
         applyTest(subject: mock1 + TextValidator(mock2) + mock1, [mock1, mock2])
         applyTest(subject: TextValidator(mock2) + mock1 + mock2, [mock1, mock2])
-        applyTest(subject: mock1 + [mock2, mock1], [mock1, mock2])
-        applyTest(subject: TextValidator(mock2) + [mock1, mock2], [mock1, mock2])
+        applyTest(subject: mock1 + [mockV2, mockV1], [mock1, mock2])
+        applyTest(subject: TextValidator(mock2) + [mockV1, mockV2], [mock1, mock2])
     }
 }

@@ -8,21 +8,21 @@ public extension SmartTextField {
     }
 
     struct DatePicker: Equatable {
-        let calendar: Calendar
-        let dateFormatter: Foundation.DateFormatter
-        let minDate: Date
-        let selecatedDate: Date?
-        let maxDate: Date
-        let mode: UIDatePicker.Mode
-        let eventier: SmartTextField.Eventier?
+        public let calendar: Calendar
+        public let dateFormatter: Foundation.DateFormatter
+        public let minDate: Date
+        public let selecatedDate: Date?
+        public let maxDate: Date
+        public let mode: UIDatePicker.Mode
+        public let eventier: SmartTextField.Eventier?
 
-        init(calendar: Calendar = .current,
-             dateFormatter: Foundation.DateFormatter,
-             minDate: Date,
-             selecatedDate: Date?,
-             maxDate: Date,
-             mode: UIDatePicker.Mode = .date,
-             eventier: SmartTextField.Eventier? = nil) {
+        public init(calendar: Calendar = .current,
+                    dateFormatter: Foundation.DateFormatter,
+                    minDate: Date = .init(),
+                    selecatedDate: Date?,
+                    maxDate: Date,
+                    mode: UIDatePicker.Mode = .date,
+                    eventier: SmartTextField.Eventier? = nil) {
             self.calendar = calendar
             self.dateFormatter = dateFormatter
             self.minDate = minDate
@@ -34,29 +34,29 @@ public extension SmartTextField {
     }
 
     struct Configuration: Equatable {
-        let placeholder: String
-        let textFormatter: TextFormatter
-        let textValidator: TextValidator
+        public let placeholder: String?
+        public let textFormatter: TextFormatter
+        public let textValidator: TextValidator
 
-        let textContentType: UITextContentType?
-        let isSecureTextEntry: Bool
+        public let textContentType: UITextContentType?
+        public let isSecureTextEntry: Bool
 
-        let keyboardType: UIKeyboardType
-        let returnKeyType: UIReturnKeyType
-        let autocapitalizationType: UITextAutocapitalizationType
-        let autocorrectionType: UITextAutocorrectionType
-        let clearButtonMode: UITextField.ViewMode
+        public let keyboardType: UIKeyboardType
+        public let returnKeyType: UIReturnKeyType
+        public let autocapitalizationType: UITextAutocapitalizationType
+        public let autocorrectionType: UITextAutocorrectionType
+        public let clearButtonMode: UITextField.ViewMode
 
-        init(placeholder: String,
-             textFormatter: TextFormatter = .identity,
-             textValidator: TextValidator = .identity,
-             textContentType: UITextContentType? = nil,
-             isSecureTextEntry: Bool = false,
-             keyboardType: UIKeyboardType = .default,
-             returnKeyType: UIReturnKeyType = .default,
-             autocapitalizationType: UITextAutocapitalizationType = .none,
-             autocorrectionType: UITextAutocorrectionType = .no,
-             clearButtonMode: UITextField.ViewMode = .never) {
+        public init(placeholder: String? = nil,
+                    textFormatter: TextFormatter = .identity,
+                    textValidator: TextValidator = .identity,
+                    textContentType: UITextContentType? = nil,
+                    isSecureTextEntry: Bool = false,
+                    keyboardType: UIKeyboardType = .default,
+                    returnKeyType: UIReturnKeyType = .default,
+                    autocapitalizationType: UITextAutocapitalizationType = .none,
+                    autocorrectionType: UITextAutocorrectionType = .no,
+                    clearButtonMode: UITextField.ViewMode = .never) {
             self.placeholder = placeholder
             self.textFormatter = textFormatter
             self.textValidator = textValidator

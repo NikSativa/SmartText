@@ -1,12 +1,7 @@
 import Foundation
 
-infix operator +: AdditionPrecedence
-public class TextFormatter: Equatable, ExpressibleByArrayLiteral {
+public final class TextFormatter: Equatable, ExpressibleByArrayLiteral {
     private let formatters: [TextFormatable]
-
-    public required init(arrayLiteral: TextFormatable...) {
-        self.formatters = arrayLiteral
-    }
 
     public required init(_ formatables: [TextFormatable]) {
         self.formatters = formatables
@@ -17,7 +12,12 @@ public class TextFormatter: Equatable, ExpressibleByArrayLiteral {
     }
 
     public convenience init(formatters: [TextFormatter]) {
-        let formatables = formatters.reduce([]) { $0 + $1.formatters }
+        let formatables = formatters.flatMap(\.formatters)
+        self.init(formatables)
+    }
+
+    public convenience init(arrayLiteral formatters: TextFormatter...) {
+        let formatables = formatters.flatMap(\.formatters)
         self.init(formatables)
     }
 

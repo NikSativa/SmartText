@@ -5,10 +5,6 @@ public final class TextValidator: Equatable, ExpressibleByArrayLiteral {
 
     private let validators: [TextValidatable]
 
-    public required init(arrayLiteral elements: TextValidatable...) {
-        self.validators = elements
-    }
-
     public required init(_ validatables: [TextValidatable]) {
         self.validators = validatables
     }
@@ -18,7 +14,12 @@ public final class TextValidator: Equatable, ExpressibleByArrayLiteral {
     }
 
     public convenience init(validators: [TextValidator]) {
-        let validatables = validators.reduce([]) { $0 + $1.validators }
+        let validatables = validators.flatMap(\.validators)
+        self.init(validatables)
+    }
+
+    public convenience init(arrayLiteral validators: TextValidator...) {
+        let validatables = validators.flatMap(\.validators)
         self.init(validatables)
     }
 
