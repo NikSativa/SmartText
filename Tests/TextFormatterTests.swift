@@ -46,8 +46,11 @@ final class TextFormatterTests: XCTestCase {
 
         let mock1: TextFormatable = TestFormatter(uniqueID: "1")
         let mock2: TextFormatable = TestFormatter(uniqueID: "2")
-        applyTest(subject: .init(arrayLiteral: mock1, mock2), [mock1, mock2])
-        applyTest(subject: [mock1, mock2], [mock1, mock2])
+
+        let mockV1: TextFormatter = mock1.toFormatter()
+        let mockV2: TextFormatter = mock2.toFormatter()
+        applyTest(subject: .init(arrayLiteral: mockV1, mockV2), [mock1, mock2])
+        applyTest(subject: [mockV1, mockV2], [mock1, mock2])
         applyTest(subject: .init([mock1, mock2]), [mock1, mock2])
         applyTest(subject: .init(mock1), [mock1])
         applyTest(subject: .init(formatters: [TextFormatter(mock1), TextFormatter(mock2)]), [mock1, mock2])
@@ -55,7 +58,7 @@ final class TextFormatterTests: XCTestCase {
         applyTest(subject: TextFormatter(mock1) + mock2, [mock1, mock2])
         applyTest(subject: mock1 + TextFormatter(mock2) + mock1, [mock1, mock2])
         applyTest(subject: TextFormatter(mock2) + mock1 + mock2, [mock1, mock2])
-        applyTest(subject: mock1 + [mock2, mock1], [mock1, mock2])
-        applyTest(subject: TextFormatter(mock2) + [mock1, mock2], [mock1, mock2])
+        applyTest(subject: mock1 + [mockV2, mockV1], [mock1, mock2])
+        applyTest(subject: TextFormatter(mock2) + [mockV1, mockV2], [mock1, mock2])
     }
 }

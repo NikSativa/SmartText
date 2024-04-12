@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextValidator {
     static func numbersOnly(errorText: String? = nil) -> TextValidator {
-        return TextValidator(NumbersOnlyValidator(errorText: errorText))
+        return NumbersOnlyValidator(errorText: errorText).toValidator()
     }
 }
 

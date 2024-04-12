@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextValidator {
     static func email(errorText: String? = nil) -> TextValidator {
-        return TextValidator(EmailValidation(errorText: errorText))
+        return EmailValidation(errorText: errorText).toValidator()
     }
 }
 

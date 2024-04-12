@@ -3,7 +3,7 @@ import Foundation
 public extension TextValidator {
     static func custom(errorText: String? = nil,
                        _ validator: @escaping (String) -> Bool) -> TextValidator {
-        return TextValidator(CustomValidator(validator: validator, errorText: errorText))
+        return CustomValidator(validator: validator, errorText: errorText).toValidator()
     }
 }
 

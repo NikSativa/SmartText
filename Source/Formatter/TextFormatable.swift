@@ -14,6 +14,10 @@ public extension TextFormatable {
         String(describing: type(of: self))
     }
 
+    func toFormatter() -> TextFormatter {
+        return .init(self)
+    }
+
     static func ==(lhs: Self, rhs: Self) -> Bool {
         return lhs.uniqueID == rhs.uniqueID
     }

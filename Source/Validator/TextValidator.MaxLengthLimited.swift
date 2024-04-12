@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextValidator {
     static func maxLengthLimited(_ count: Int, errorText: String? = nil) -> TextValidator {
-        return TextValidator(MaxCharacterLimitValidation(maxCharacters: count, errorText: errorText))
+        return MaxCharacterLimitValidation(maxCharacters: count, errorText: errorText).toValidator()
     }
 }
 

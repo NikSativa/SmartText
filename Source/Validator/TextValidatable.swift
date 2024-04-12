@@ -15,6 +15,10 @@ public extension TextValidatable {
         return String(describing: type(of: self)) + (errorText.map { " errorText: \($0)" } ?? "")
     }
 
+    func toValidator() -> TextValidator {
+        return .init(self)
+    }
+
     static func ==(lhs: Self, rhs: Self) -> Bool {
         return lhs.uniqueID == rhs.uniqueID
     }

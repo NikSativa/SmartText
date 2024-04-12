@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextFormatter {
     static var identity: TextFormatter {
-        return [IdentityTextFormatter()]
+        return IdentityTextFormatter().toFormatter()
     }
 }
 

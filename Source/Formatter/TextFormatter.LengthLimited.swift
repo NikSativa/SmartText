@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextFormatter {
     static func lengthLimited(_ count: Int) -> TextFormatter {
-        return TextFormatter(MaxCharsFormatter(maxChars: count))
+        return MaxCharsFormatter(maxChars: count).toFormatter()
     }
 }
 

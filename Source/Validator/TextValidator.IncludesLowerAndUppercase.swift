@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextValidator {
     static func includesLowerAndUppercase(errorText: String? = nil) -> TextValidator {
-        return TextValidator(IncludesUpperAndLowercaseCharactersValidator(errorText: errorText))
+        return IncludesUpperAndLowercaseCharactersValidator(errorText: errorText).toValidator()
     }
 }
 

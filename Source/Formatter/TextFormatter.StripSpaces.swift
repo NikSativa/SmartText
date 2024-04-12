@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextFormatter {
     static var stripLeadingAndTrailingSpaces: TextFormatter {
-        return TextFormatter(StripLeadingAndTrailingSpaces())
+        return StripLeadingAndTrailingSpaces().toFormatter()
     }
 }
 

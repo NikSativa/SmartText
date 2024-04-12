@@ -49,8 +49,8 @@ final class TextValidatorTests: XCTestCase {
         let mock1 = TestValidator(uniqueID: "1")
         let mock2 = TestValidator(uniqueID: "2")
 
-        let mockV1 = TextValidator(mock1)
-        let mockV2 = TextValidator(mock2)
+        let mockV1: TextValidator = mock1.toValidator()
+        let mockV2: TextValidator = mock2.toValidator()
 
         applyTest(subject: .init(arrayLiteral: mockV1, mockV2), [mock1, mock2])
         applyTest(subject: [mockV1, mockV2], [mock1, mock2])

@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextValidator {
     static func notEmpty(errorText: String? = nil) -> TextValidator {
-        return TextValidator(NotEmptyValidator(errorText: errorText))
+        return NotEmptyValidator(errorText: errorText).toValidator()
     }
 }
 

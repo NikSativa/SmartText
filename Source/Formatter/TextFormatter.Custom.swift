@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextFormatter {
     static func custom(_ formatter: @escaping (String) -> String) -> TextFormatter {
-        return [CustomFormatter(formatter: formatter)]
+        return CustomFormatter(formatter: formatter).toFormatter()
     }
 }
 

@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextValidator {
     static func lengthLimited(_ count: Int, canBeEmpty: Bool, errorText: String? = nil) -> TextValidator {
-        return TextValidator(LengthLimitedValidation(limitCharacters: count, canBeEmpty: canBeEmpty, errorText: errorText))
+        return LengthLimitedValidation(limitCharacters: count, canBeEmpty: canBeEmpty, errorText: errorText).toValidator()
     }
 }
 

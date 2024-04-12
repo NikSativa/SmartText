@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextFormatter {
     static var numbersOnly: TextFormatter {
-        return [NumbersOnlyFormatter()]
+        return NumbersOnlyFormatter().toFormatter()
     }
 }
 

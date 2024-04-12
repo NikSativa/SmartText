@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextFormatter {
     static var stripLeadingSpaces: TextFormatter {
-        return [StripLeadingSpaces()]
+        return StripLeadingSpaces().toFormatter()
     }
 }
 

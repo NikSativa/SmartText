@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextValidator {
     static var identity: TextValidator {
-        return TextValidator(IdentityTextValidator())
+        return IdentityTextValidator().toValidator()
     }
 }
 

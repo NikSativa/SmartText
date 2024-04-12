@@ -2,7 +2,7 @@ import Foundation
 
 public extension TextFormatter {
     static var email: TextFormatter {
-        return [EmailTextFormatter()]
+        return EmailTextFormatter().toFormatter()
     }
 }
 
