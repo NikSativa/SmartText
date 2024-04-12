@@ -1,4 +1,6 @@
 # SmartText
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FNikSativa%2FSmartText%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/NikSativa/SmartText)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FNikSativa%2FSmartText%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/NikSativa/SmartText)
 
 Swift library that provides a set of useful text formatting and validation tools that can be useful in your project.
 'SmartTextField' is wrapping UITextField to use that powerfull tools and make it easy to use.
