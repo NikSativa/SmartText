@@ -1,3 +1,4 @@
+#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || os(visionOS)
 import Foundation
 import UIKit
 
@@ -7,6 +8,7 @@ public extension SmartTextField {
         case text(String)
     }
 
+    #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
     struct DatePicker: Equatable {
         public let calendar: Calendar
         public let dateFormatter: Foundation.DateFormatter
@@ -32,6 +34,7 @@ public extension SmartTextField {
             self.eventier = eventier
         }
     }
+    #endif
 
     struct Configuration: Equatable {
         public let placeholder: String?
@@ -70,3 +73,4 @@ public extension SmartTextField {
         }
     }
 }
+#endif

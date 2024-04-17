@@ -1,3 +1,4 @@
+#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || os(visionOS)
 import Foundation
 import UIKit
 
@@ -41,6 +42,7 @@ public final class SmartTextField: UIView {
         return textValidator.isTextValid(real.text ?? "")
     }
 
+    #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
     public func configure(with viewState: DatePicker) {
         let datePicker: UIDatePicker
         if let oldDatePicker = real.inputView as? UIDatePicker {
@@ -58,6 +60,7 @@ public final class SmartTextField: UIView {
         datePicker.maximumDate = viewState.maxDate
         dateFormatter = viewState.dateFormatter
     }
+    #endif
 
     public func configure(with viewState: Configuration) {
         real.inputView = nil
@@ -145,6 +148,7 @@ public final class SmartTextField: UIView {
         }
     }
 
+    #if os(iOS) || targetEnvironment(macCatalyst)
     @discardableResult
     public func setupToolbar(button: UIBarButtonItem.SystemItem, height: CGFloat = 44) -> UIToolbar {
         let doneButton = UIBarButtonItem(barButtonSystemItem: button, target: self, action: #selector(doneTapped))
@@ -162,11 +166,14 @@ public final class SmartTextField: UIView {
         real.resignFirstResponder()
         eventier.didTapToolbarDoneButton()
     }
+    #endif
 
+    #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
     @objc
     private func dateChanged(sender: UIDatePicker) {
         real.text = dateFormatter.string(from: sender.date)
     }
+    #endif
 
     override public var canBecomeFirstResponder: Bool {
         return real.canBecomeFirstResponder
@@ -258,10 +265,12 @@ extension SmartTextField: UITextFieldDelegate {
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
         if let datePicker = textField.inputView as? UIDatePicker {
             let date = datePicker.date
             eventier.dateDidChanged(date)
         }
+        #endif
 
         eventier.didEndEditing()
     }
@@ -279,3 +288,4 @@ extension SmartTextField: UITextFieldDelegate {
         return false
     }
 }
+#endif
