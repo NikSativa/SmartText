@@ -65,7 +65,18 @@ public final class SmartTextField: UIView {
     public func configure(with viewState: Configuration) {
         real.inputView = nil
 
-        real.placeholder = viewState.placeholder
+        switch viewState.placeholder {
+        case .text(let string):
+            real.attributedPlaceholder = nil
+            real.placeholder = string
+        case .attributed(let string):
+            real.placeholder = nil
+            real.attributedPlaceholder = string
+        case .none:
+            real.placeholder = nil
+            real.attributedPlaceholder = nil
+        }
+
         real.textContentType = viewState.textContentType
         real.isSecureTextEntry = viewState.isSecureTextEntry
         real.keyboardType = viewState.keyboardType

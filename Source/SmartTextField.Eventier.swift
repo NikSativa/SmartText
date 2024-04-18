@@ -5,29 +5,29 @@ import Foundation
 
 public extension SmartTextField {
     final class Eventier {
-        var shouldBeginEditing: () -> Bool
-        var didBeginEditing: () -> Void
+        public var shouldBeginEditing: () -> Bool
+        public var didBeginEditing: () -> Void
 
-        var textDidChanged: (_ newValue: String) -> Void
-        var errorDidChanged: (_ state: TextValidationResult) -> Void
+        public var textDidChanged: (_ newValue: String) -> Void
+        public var errorDidChanged: (_ state: TextValidationResult) -> Void
 
-        var didEndEditing: () -> Void
-        var didTapReturnButton: () -> Void
-        var clearButton: () -> Void
+        public var didEndEditing: () -> Void
+        public var didTapReturnButton: () -> Void
+        public var clearButton: () -> Void
 
         #if os(iOS) || targetEnvironment(macCatalyst)
-        var dateDidChanged: (_ newValue: Date) -> Void
-        var didTapToolbarDoneButton: () -> Void
+        public var dateDidChanged: (_ newValue: Date) -> Void
+        public var didTapToolbarDoneButton: () -> Void
 
-        required init(shouldBeginEditing: @escaping () -> Bool = { true },
-                      didBeginEditing: @escaping () -> Void = {},
-                      dateDidChanged: @escaping (Date) -> Void = { _ in },
-                      textDidChanged: @escaping (String) -> Void = { _ in },
-                      errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
-                      didEndEditing: @escaping () -> Void = {},
-                      didTapReturnButton: @escaping () -> Void = {},
-                      didTapToolbarDoneButton: @escaping () -> Void = {},
-                      clearButton: @escaping () -> Void = {}) {
+        public required init(shouldBeginEditing: @escaping () -> Bool = { true },
+                             didBeginEditing: @escaping () -> Void = {},
+                             dateDidChanged: @escaping (Date) -> Void = { _ in },
+                             textDidChanged: @escaping (String) -> Void = { _ in },
+                             errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
+                             didEndEditing: @escaping () -> Void = {},
+                             didTapReturnButton: @escaping () -> Void = {},
+                             didTapToolbarDoneButton: @escaping () -> Void = {},
+                             clearButton: @escaping () -> Void = {}) {
             self.shouldBeginEditing = shouldBeginEditing
             self.didBeginEditing = didBeginEditing
             self.dateDidChanged = dateDidChanged
@@ -40,15 +40,15 @@ public extension SmartTextField {
         }
 
         #elseif os(visionOS)
-        var dateDidChanged: (_ newValue: Date) -> Void
-        required init(shouldBeginEditing: @escaping () -> Bool = { true },
-                      didBeginEditing: @escaping () -> Void = {},
-                      dateDidChanged: @escaping (Date) -> Void = { _ in },
-                      textDidChanged: @escaping (String) -> Void = { _ in },
-                      errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
-                      didEndEditing: @escaping () -> Void = {},
-                      didTapReturnButton: @escaping () -> Void = {},
-                      clearButton: @escaping () -> Void = {}) {
+        public var dateDidChanged: (_ newValue: Date) -> Void
+        public required init(shouldBeginEditing: @escaping () -> Bool = { true },
+                             didBeginEditing: @escaping () -> Void = {},
+                             dateDidChanged: @escaping (Date) -> Void = { _ in },
+                             textDidChanged: @escaping (String) -> Void = { _ in },
+                             errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
+                             didEndEditing: @escaping () -> Void = {},
+                             didTapReturnButton: @escaping () -> Void = {},
+                             clearButton: @escaping () -> Void = {}) {
             self.shouldBeginEditing = shouldBeginEditing
             self.didBeginEditing = didBeginEditing
             self.dateDidChanged = dateDidChanged
@@ -58,14 +58,15 @@ public extension SmartTextField {
             self.didTapReturnButton = didTapReturnButton
             self.clearButton = clearButton
         }
+
         #elseif os(tvOS)
-        required init(shouldBeginEditing: @escaping () -> Bool = { true },
-                      didBeginEditing: @escaping () -> Void = {},
-                      textDidChanged: @escaping (String) -> Void = { _ in },
-                      errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
-                      didEndEditing: @escaping () -> Void = {},
-                      didTapReturnButton: @escaping () -> Void = {},
-                      clearButton: @escaping () -> Void = {}) {
+        public required init(shouldBeginEditing: @escaping () -> Bool = { true },
+                             didBeginEditing: @escaping () -> Void = {},
+                             textDidChanged: @escaping (String) -> Void = { _ in },
+                             errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
+                             didEndEditing: @escaping () -> Void = {},
+                             didTapReturnButton: @escaping () -> Void = {},
+                             clearButton: @escaping () -> Void = {}) {
             self.shouldBeginEditing = shouldBeginEditing
             self.didBeginEditing = didBeginEditing
             self.textDidChanged = textDidChanged

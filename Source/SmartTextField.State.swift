@@ -37,7 +37,16 @@ public extension SmartTextField {
     #endif
 
     struct Configuration: Equatable {
-        public let placeholder: String?
+        public enum Placeholder: Equatable, ExpressibleByStringLiteral {
+            case text(String)
+            case attributed(NSAttributedString)
+
+            public init(stringLiteral value: String) {
+                self = .text(value)
+            }
+        }
+
+        public let placeholder: Placeholder?
         public let textFormatter: TextFormatter
         public let textValidator: TextValidator
 
@@ -50,7 +59,7 @@ public extension SmartTextField {
         public let autocorrectionType: UITextAutocorrectionType
         public let clearButtonMode: UITextField.ViewMode
 
-        public init(placeholder: String? = nil,
+        public init(placeholder: Placeholder? = nil,
                     textFormatter: TextFormatter = .identity,
                     textValidator: TextValidator = .identity,
                     textContentType: UITextContentType? = nil,
