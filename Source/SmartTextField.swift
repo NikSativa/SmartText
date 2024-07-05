@@ -287,9 +287,11 @@ extension SmartTextField: UITextFieldDelegate {
     }
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        eventier.didTapReturnButton()
-        return false
+        if eventier.didTapReturnButton() {
+            textField.resignFirstResponder()
+            return false
+        }
+        return true
     }
 
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
