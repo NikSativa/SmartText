@@ -7,8 +7,8 @@ public extension TextFormatter {
 }
 
 private struct StripLeadingSpaces: TextFormatable {
-    public func formatText(_ string: String) -> String {
-        let formattedString = string.reduce("") { result, nextCharacter -> String in
+    public func format(_ value: String) -> String {
+        let formattedString = value.reduce("") { result, nextCharacter -> String in
             if nextCharacter == " ", result.isEmpty {
                 return result
             }

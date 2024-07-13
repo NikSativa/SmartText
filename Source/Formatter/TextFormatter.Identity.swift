@@ -7,7 +7,7 @@ public extension TextFormatter {
 }
 
 private struct IdentityTextFormatter: TextFormatable {
-    public func formatText(_ string: String) -> String {
-        return string
+    public func format(_ value: String) -> String {
+        return value
     }
 }

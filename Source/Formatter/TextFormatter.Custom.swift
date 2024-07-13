@@ -13,7 +13,7 @@ private struct CustomFormatter: TextFormatable {
         self.formatter = formatter
     }
 
-    func formatText(_ string: String) -> String {
-        return formatter(string)
+    func format(_ value: String) -> String {
+        return formatter(value)
     }
 }

@@ -7,19 +7,16 @@ public extension TextValidator {
 }
 
 private struct MaxCharacterLimitValidation: TextValidatable {
+    let maxCharacters: Int
     let errorText: String?
-    private let maxCharacters: Int
 
-    init(maxCharacters: Int, errorText: String?) {
-        self.maxCharacters = maxCharacters
-        self.errorText = errorText
-    }
+    func validate(_ value: String) -> TextValidationResult {
+        if value.count <= maxCharacters {
+            return .valid
+        }
 
-    func isValid(string: String) -> Bool {
-        return string.count <= maxCharacters
-    }
-
-    var uniqueID: String {
-        return makeUniqueID() + " \(maxCharacters)"
+        return .init(invalidRanges: [value.index(value.startIndex, offsetBy: maxCharacters)..<value.endIndex],
+                     errorText: errorText,
+                     isValid: false)
     }
 }

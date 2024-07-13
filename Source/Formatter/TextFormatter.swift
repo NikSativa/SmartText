@@ -1,6 +1,6 @@
 import Foundation
 
-public final class TextFormatter: Equatable, ExpressibleByArrayLiteral {
+public final class TextFormatter: ExpressibleByArrayLiteral {
     private let formatters: [TextFormatable]
 
     public required init(_ formatables: [TextFormatable]) {
@@ -21,10 +21,10 @@ public final class TextFormatter: Equatable, ExpressibleByArrayLiteral {
         self.init(formatables)
     }
 
-    public func formatText(_ text: String) -> String {
-        var formattedText = text
+    public func format(_ value: String) -> String {
+        var formattedText = value
         for formatter in formatters {
-            formattedText = formatter.formatText(formattedText)
+            formattedText = formatter.format(formattedText)
         }
         return formattedText
     }
@@ -42,11 +42,5 @@ public final class TextFormatter: Equatable, ExpressibleByArrayLiteral {
     public static func +(lhs: TextFormatter, rhs: TextFormatter) -> TextFormatter {
         let combinedValidations = lhs.formatters + rhs.formatters
         return .init(combinedValidations)
-    }
-
-    public static func ==(lhs: TextFormatter, rhs: TextFormatter) -> Bool {
-        let lhsIDs = Set(lhs.formatters.map(\.uniqueID))
-        let rhsIDs = Set(rhs.formatters.map(\.uniqueID))
-        return lhsIDs == rhsIDs
     }
 }

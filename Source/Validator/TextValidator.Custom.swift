@@ -1,17 +1,19 @@
 import Foundation
 
 public extension TextValidator {
+    typealias CustomValidatorClosure = (_ value: String, _ errorText: String?) -> TextValidationResult
+
     static func custom(errorText: String? = nil,
-                       _ validator: @escaping (String) -> Bool) -> TextValidator {
-        return CustomValidator(validator: validator, errorText: errorText).toValidator()
+                       _ validator: @escaping CustomValidatorClosure) -> TextValidator {
+        return CustomValidator(errorText: errorText, validator: validator).toValidator()
     }
 }
 
 private struct CustomValidator: TextValidatable {
-    let validator: (String) -> Bool
     let errorText: String?
+    let validator: TextValidator.CustomValidatorClosure
 
-    func isValid(string: String) -> Bool {
-        return validator(string)
+    func validate(_ value: String) -> TextValidationResult {
+        return validator(value, errorText)
     }
 }

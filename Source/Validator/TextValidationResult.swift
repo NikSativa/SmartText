@@ -1,27 +1,29 @@
 import Foundation
 
-public enum TextValidationResult: Equatable {
-    case valid
-    case invalid
-    case invalidWithErrorText(String)
+public struct TextValidationResult: Equatable {
+    public let invalidRanges: [Range<String.Index>]
+    public let errorText: String?
+    public let isValid: Bool
 
-    public var isValid: Bool {
-        switch self {
-        case .invalid,
-             .invalidWithErrorText:
-            return false
-        case .valid:
-            return true
-        }
+    public static let valid: Self = .init(invalidRanges: [], errorText: nil, isValid: true)
+    public static func invalid(withErrorText: String? = nil) -> Self {
+        return .init(invalidRanges: [], errorText: withErrorText, isValid: false)
     }
 
-    public var errorText: String? {
-        switch self {
-        case .invalidWithErrorText(let text):
-            return text
-        case .invalid,
-             .valid:
-            return nil
-        }
+    public init(invalidRanges: [Range<String.Index>] = [],
+                errorText: String? = nil,
+                isValid: Bool) {
+        self.invalidRanges = invalidRanges
+        self.errorText = errorText
+        self.isValid = isValid
     }
+}
+
+public extension TextValidationResult {
+    static let invalid: Self = .init(isValid: false)
+}
+
+public extension [TextValidationResult] {
+    static let invalid: Self = [.invalid]
+    static let valid: Self = []
 }

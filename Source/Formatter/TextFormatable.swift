@@ -1,24 +1,11 @@
 import Foundation
 
 public protocol TextFormatable {
-    var uniqueID: String { get }
-    func formatText(_ string: String) -> String
+    func format(_ value: String) -> String
 }
 
 public extension TextFormatable {
-    var uniqueID: String {
-        makeUniqueID()
-    }
-
-    func makeUniqueID() -> String {
-        String(describing: type(of: self))
-    }
-
     func toFormatter() -> TextFormatter {
         return .init(self)
-    }
-
-    static func ==(lhs: Self, rhs: Self) -> Bool {
-        return lhs.uniqueID == rhs.uniqueID
     }
 }

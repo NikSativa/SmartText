@@ -13,11 +13,7 @@ private struct MaxCharsFormatter: TextFormatable {
         self.maxChars = maxChars
     }
 
-    public func formatText(_ string: String) -> String {
-        return string[maxLength: maxChars]
-    }
-
-    var uniqueID: String {
-        return makeUniqueID() + " \(maxChars)"
+    public func format(_ value: String) -> String {
+        return value[maxLength: maxChars]
     }
 }

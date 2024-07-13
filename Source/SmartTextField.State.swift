@@ -9,7 +9,7 @@ public extension SmartTextField {
     }
 
     #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
-    struct DatePicker: Equatable {
+    struct DatePicker {
         public let calendar: Calendar
         public let dateFormatter: Foundation.DateFormatter
         public let minDate: Date
@@ -36,7 +36,7 @@ public extension SmartTextField {
     }
     #endif
 
-    struct Configuration: Equatable {
+    struct Configuration {
         public enum Placeholder: Equatable, ExpressibleByStringLiteral {
             case text(String)
             case attributed(NSAttributedString)

@@ -7,7 +7,7 @@ public extension TextFormatter {
 }
 
 private struct StripLeadingAndTrailingSpaces: TextFormatable {
-    func formatText(_ string: String) -> String {
-        return string.trimmingCharacters(in: .whitespacesAndNewlines)
+    func format(_ value: String) -> String {
+        return value.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

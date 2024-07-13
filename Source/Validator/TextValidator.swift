@@ -1,6 +1,6 @@
 import Foundation
 
-public final class TextValidator: Equatable, ExpressibleByArrayLiteral {
+public final class TextValidator: ExpressibleByArrayLiteral {
     public typealias Eventier = (TextValidator, TextValidationResult) -> Void
 
     private let validators: [TextValidatable]
@@ -23,16 +23,11 @@ public final class TextValidator: Equatable, ExpressibleByArrayLiteral {
         self.init(validatables)
     }
 
-    public func isTextValid(_ text: String) -> TextValidationResult {
-        let result: TextValidationResult = validators
-            .first(where: {
-                !$0.isValid(string: text)
-            })
-            .map {
-                $0.errorText.map { .invalidWithErrorText($0) } ?? .invalid
-            } ?? .valid
-
-        return result
+    public func validate(_ value: String) -> [TextValidationResult] {
+        return validators.compactMap {
+            let result = $0.validate(value)
+            return result.isValid ? nil : result
+        }
     }
 
     public static func +(lhs: TextValidator, rhs: TextValidatable) -> TextValidator {
@@ -48,11 +43,5 @@ public final class TextValidator: Equatable, ExpressibleByArrayLiteral {
     public static func +(lhs: TextValidator, rhs: TextValidator) -> TextValidator {
         let validators = lhs.validators + rhs.validators
         return .init(validators)
-    }
-
-    public static func ==(lhs: TextValidator, rhs: TextValidator) -> Bool {
-        let lhsIDs = Set(lhs.validators.map(\.uniqueID))
-        let rhsIDs = Set(rhs.validators.map(\.uniqueID))
-        return lhsIDs == rhsIDs
     }
 }

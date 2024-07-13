@@ -9,7 +9,7 @@ public extension SmartTextField {
         public var didBeginEditing: () -> Void
 
         public var textDidChanged: (_ newValue: String) -> Void
-        public var errorDidChanged: (_ state: TextValidationResult) -> Void
+        public var errorDidChanged: (_ state: [TextValidationResult]) -> Void
 
         public var didEndEditing: () -> Void
         /// Return `true` if you want to resign first responder
@@ -25,7 +25,7 @@ public extension SmartTextField {
                              didBeginEditing: @escaping () -> Void = {},
                              dateDidChanged: @escaping (Date) -> Void = { _ in },
                              textDidChanged: @escaping (String) -> Void = { _ in },
-                             errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
+                             errorDidChanged: @escaping ([TextValidationResult]) -> Void = { _ in },
                              didEndEditing: @escaping () -> Void = {},
                              didTapReturnButton: @escaping () -> Bool = { true },
                              didTapToolbarDoneButton: @escaping () -> Void = {},
@@ -47,7 +47,7 @@ public extension SmartTextField {
                              didBeginEditing: @escaping () -> Void = {},
                              dateDidChanged: @escaping (Date) -> Void = { _ in },
                              textDidChanged: @escaping (String) -> Void = { _ in },
-                             errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
+                             errorDidChanged: @escaping ([TextValidationResult]) -> Void = { _ in },
                              didEndEditing: @escaping () -> Void = {},
                              didTapReturnButton: @escaping () -> Bool = { true },
                              clearButton: @escaping () -> Void = {}) {
@@ -65,7 +65,7 @@ public extension SmartTextField {
         public required init(shouldBeginEditing: @escaping () -> Bool = { true },
                              didBeginEditing: @escaping () -> Void = {},
                              textDidChanged: @escaping (String) -> Void = { _ in },
-                             errorDidChanged: @escaping (TextValidationResult) -> Void = { _ in },
+                             errorDidChanged: @escaping ([TextValidationResult]) -> Void = { _ in },
                              didEndEditing: @escaping () -> Void = {},
                              didTapReturnButton: @escaping () -> Bool = { true },
                              clearButton: @escaping () -> Void = {}) {
@@ -78,14 +78,6 @@ public extension SmartTextField {
             self.clearButton = clearButton
         }
         #endif
-    }
-}
-
-// MARK: - SmartTextField.Eventier + Equatable
-
-extension SmartTextField.Eventier: Equatable {
-    public static func ==(lhs: SmartTextField.Eventier, rhs: SmartTextField.Eventier) -> Bool {
-        return lhs === rhs
     }
 }
 #endif

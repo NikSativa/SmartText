@@ -9,12 +9,14 @@ public extension TextValidator {
 private struct NumbersOnlyValidator: TextValidatable {
     let errorText: String?
 
-    init(errorText: String?) {
-        self.errorText = errorText
-    }
-
-    func isValid(string: String) -> Bool {
+    func validate(_ value: String) -> TextValidationResult {
         let numberCharacters = CharacterSet.decimalDigits.inverted
-        return string.rangeOfCharacter(from: numberCharacters) == nil
+        let ranges = value.ranges(of: numberCharacters)
+        if ranges.isEmpty {
+            return .valid
+        }
+        return .init(invalidRanges: ranges,
+                     errorText: errorText,
+                     isValid: false)
     }
 }

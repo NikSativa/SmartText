@@ -7,19 +7,13 @@ public extension TextValidator {
 }
 
 private struct MinCharacterLimitValidation: TextValidatable {
+    let minCharacters: Int
     let errorText: String?
-    private let minCharacters: Int
 
-    init(minCharacters: Int, errorText: String?) {
-        self.minCharacters = minCharacters
-        self.errorText = errorText
-    }
-
-    func isValid(string: String) -> Bool {
-        return string.count >= minCharacters
-    }
-
-    var uniqueID: String {
-        return makeUniqueID() + " \(minCharacters)"
+    func validate(_ value: String) -> TextValidationResult {
+        if value.count >= minCharacters {
+            return .valid
+        }
+        return .invalid(withErrorText: errorText)
     }
 }

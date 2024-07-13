@@ -7,9 +7,7 @@ public extension TextValidator {
 }
 
 private struct IdentityTextValidator: TextValidatable {
-    let errorText: String? = nil
-
-    func isValid(string _: String) -> Bool {
-        return true
+    func validate(_: String) -> TextValidationResult {
+        return .valid
     }
 }

@@ -38,8 +38,8 @@ public final class SmartTextField: UIView {
         }
     }
 
-    public var silentErrorState: TextValidationResult {
-        return textValidator.isTextValid(real.text ?? "")
+    public var validationState: [TextValidationResult] {
+        return textValidator.validate(real.text ?? "")
     }
 
     #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
@@ -88,13 +88,13 @@ public final class SmartTextField: UIView {
         textFormatter = viewState.textFormatter
         textValidator = viewState.textValidator
 
-        real.text = textFormatter.formatText(real.text ?? "")
+        real.text = textFormatter.format(real.text ?? "")
     }
 
     public func setText(_ text: String?) {
         let oldText = real.text
 
-        let newText = text.map(textFormatter.formatText) ?? ""
+        let newText = text.map(textFormatter.format) ?? ""
         real.text = newText
 
         if oldText != newText {
@@ -223,7 +223,7 @@ public final class SmartTextField: UIView {
 
     private func checkError() {
         if !isFirstResponder {
-            let state = textValidator.isTextValid(real.text ?? "")
+            let state = textValidator.validate(real.text ?? "")
             eventier.errorDidChanged(state)
         }
     }
@@ -247,7 +247,7 @@ extension SmartTextField: UITextFieldDelegate {
 
         let original = textField.text ?? ""
         let updated = (original as NSString).replacingCharacters(in: range, with: string) as String
-        let formatted = textFormatter.formatText(updated)
+        let formatted = textFormatter.format(updated)
         textField.text = formatted
 
         var offset = 0

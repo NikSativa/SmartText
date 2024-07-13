@@ -9,11 +9,11 @@ public extension TextValidator {
 private struct NotEmptyValidator: TextValidatable {
     let errorText: String?
 
-    init(errorText: String?) {
-        self.errorText = errorText
-    }
+    func validate(_ value: String) -> TextValidationResult {
+        if value.isEmpty == false {
+            return .valid
+        }
 
-    func isValid(string: String) -> Bool {
-        return string.isEmpty == false
+        return .invalid(withErrorText: errorText)
     }
 }
