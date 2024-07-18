@@ -1,13 +1,18 @@
 import Foundation
+import SwiftUI
 
 public extension TextValidator {
     static func email(errorText: String? = nil) -> TextValidator {
-        return EmailValidation(errorText: errorText).toValidator()
+        return EmailValidation(errorText: errorText.map(STString.plain)).toValidator()
+    }
+
+    static func email(errorKey: LocalizedStringKey) -> TextValidator {
+        return EmailValidation(errorText: .localized(errorKey)).toValidator()
     }
 }
 
 private struct EmailValidation: TextValidatable {
-    let errorText: String?
+    let errorText: STString?
 
     private static let emailPredicate: NSPredicate = {
         let emailStartValidCharacters = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+"

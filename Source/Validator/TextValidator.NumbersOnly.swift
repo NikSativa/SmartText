@@ -1,13 +1,18 @@
 import Foundation
+import SwiftUI
 
 public extension TextValidator {
     static func numbersOnly(errorText: String? = nil) -> TextValidator {
-        return NumbersOnlyValidator(errorText: errorText).toValidator()
+        return NumbersOnlyValidator(errorText: errorText.map(STString.plain)).toValidator()
+    }
+
+    static func numbersOnly(errorKey: LocalizedStringKey) -> TextValidator {
+        return NumbersOnlyValidator(errorText: .localized(errorKey)).toValidator()
     }
 }
 
 private struct NumbersOnlyValidator: TextValidatable {
-    let errorText: String?
+    let errorText: STString?
 
     func validate(_ value: String) -> TextValidationResult {
         let numberCharacters = CharacterSet.decimalDigits.inverted
