@@ -4,12 +4,20 @@ import SwiftUI
 public enum STString: Equatable {
     case plain(String)
     case localized(LocalizedStringKey)
+
+    public init(_ value: LocalizedStringKey) {
+        self = .localized(value)
+    }
 }
 
-// MARK: - ExpressibleByStringLiteral
+public extension LocalizedStringKey {
+    var st: STString {
+        return .localized(self)
+    }
+}
 
-extension STString: ExpressibleByStringLiteral {
-    public init(stringLiteral value: String) {
-        self = .plain(value)
+public extension String {
+    var st: STString {
+        return .plain(self)
     }
 }
