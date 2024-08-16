@@ -19,6 +19,6 @@ private struct IncludesUppercaseCharactersValidator: TextValidatable {
         if containsAnUppercase {
             return .valid
         }
-        return .invalid(withErrorText: errorText)
+        return .invalid(withError: errorText)
     }
 }

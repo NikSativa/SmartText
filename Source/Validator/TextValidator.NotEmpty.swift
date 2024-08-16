@@ -19,6 +19,6 @@ private struct NotEmptyValidator: TextValidatable {
             return .valid
         }
 
-        return .invalid(withErrorText: errorText)
+        return .invalid(withError: errorText)
     }
 }

@@ -3,7 +3,7 @@ import Foundation
 
 // MARK: - SmartTextField.Eventier
 
-public extension SmartTextField {
+public extension UISmartTextField {
     final class Eventier {
         public var shouldBeginEditing: () -> Bool
         public var didBeginEditing: () -> Void

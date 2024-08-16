@@ -19,6 +19,6 @@ private struct MinCharacterLimitValidation: TextValidatable {
         if value.count >= minCharacters {
             return .valid
         }
-        return .invalid(withErrorText: errorText)
+        return .invalid(withError: errorText)
     }
 }

@@ -16,13 +16,13 @@ final class TextValidator_EmailTests: XCTestCase {
         }
 
         for email in Emails.validEmails {
-            XCTAssertEqual(subject.validate(email), .valid, email)
+            XCTAssertTrue(subject.validate(email).isValid, email)
 
             let uppercasedEmail = email.uppercased()
-            XCTAssertEqual(subject.validate(uppercasedEmail), .valid, email)
+            XCTAssertTrue(subject.validate(uppercasedEmail).isValid, email)
 
             let lowercasedEmail = email.lowercased()
-            XCTAssertEqual(subject.validate(lowercasedEmail), .valid, email)
+            XCTAssertTrue(subject.validate(lowercasedEmail).isValid, email)
         }
     }
 
@@ -54,8 +54,10 @@ final class TextValidator_EmailTests: XCTestCase {
         try run_validation_test(22, sub: ["!", "@@"])
         try run_validation_test(23, sub: ["+", "@@"])
         try run_validation_test(24, sub: ["!+", "@@"])
+        try run_validation_test(25, sub: [".."])
+        try run_validation_test(26, sub: ["..."])
 
-        XCTAssertEqual(Emails.invalidEmails.count, 25)
+        XCTAssertEqual(Emails.invalidEmails.count, 27)
     }
 
     private func run_validation_test(_ idx: Int,

@@ -11,14 +11,14 @@ final class TextValidator_CustomTests: XCTestCase {
             return .invalid
         }
 
-        XCTAssertEqual(subject.validate(""), .valid)
-        XCTAssertEqual(subject.validate("123"), .valid)
-        XCTAssertEqual(subject.validate("123qwwe"), .valid)
+        XCTAssertTrue(subject.validate("").isValid)
+        XCTAssertTrue(subject.validate("123").isValid)
+        XCTAssertTrue(subject.validate("123qwwe").isValid)
 
-        XCTAssertEqual(subject.validate("0"), .invalid)
-        XCTAssertEqual(subject.validate("sd0fsd 🤓"), .invalid)
-        XCTAssertEqual(subject.validate("asd"), .invalid)
-        XCTAssertEqual(subject.validate("asd123"), .invalid)
-        XCTAssertEqual(subject.validate("1223asd"), .invalid)
+        XCTAssertTrue(subject.validate("0").isInvalid)
+        XCTAssertTrue(subject.validate("sd0fsd 🤓").isInvalid)
+        XCTAssertTrue(subject.validate("asd").isInvalid)
+        XCTAssertTrue(subject.validate("asd123").isInvalid)
+        XCTAssertTrue(subject.validate("1223asd").isInvalid)
     }
 }

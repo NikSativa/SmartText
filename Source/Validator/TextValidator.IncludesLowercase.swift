@@ -19,6 +19,6 @@ private struct IncludesLowercaseCharactersValidator: TextValidatable {
         if containsALowercase {
             return .valid
         }
-        return .invalid(withErrorText: errorText)
+        return .invalid(withError: errorText)
     }
 }

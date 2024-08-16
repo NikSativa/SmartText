@@ -19,9 +19,9 @@ final class TextValidatorTests: XCTestCase {
     }
 
     private func applyTest(subject: TextValidator, isValid: Bool, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertEqual(subject.validate("1"), .invalid, file: file, line: line)
-        XCTAssertEqual(subject.validate("2"), isValid ? .valid : .invalid, file: file, line: line)
-        XCTAssertEqual(subject.validate("12"), .valid, file: file, line: line)
+        XCTAssertTrue(subject.validate("1").isInvalid, file: file, line: line)
+        XCTAssertTrue(subject.validate("2").isValid == isValid, file: file, line: line)
+        XCTAssertTrue(subject.validate("12").isValid, file: file, line: line)
     }
 
     func test_spec() {

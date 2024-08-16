@@ -6,8 +6,8 @@ final class TextValidator_IdentityTests: XCTestCase {
     func test_spec() {
         let subject: TextValidator = .identity
 
-        XCTAssertEqual(subject.validate(""), .valid)
-        XCTAssertEqual(subject.validate("sdfsd 🤓"), .valid)
-        XCTAssertEqual(subject.validate(UUID().uuidString), .valid)
+        XCTAssertTrue(subject.validate("").isValid)
+        XCTAssertTrue(subject.validate("sdfsd 🤓").isValid)
+        XCTAssertTrue(subject.validate(UUID().uuidString).isValid)
     }
 }

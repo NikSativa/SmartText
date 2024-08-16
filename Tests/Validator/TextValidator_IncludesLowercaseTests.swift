@@ -5,13 +5,13 @@ final class TextValidator_IncludesLowercaseTests: XCTestCase {
     func test_spec() {
         let subject: TextValidator = .includesLowercase()
 
-        XCTAssertEqual(subject.validate(""), .invalid)
-        XCTAssertEqual(subject.validate("abc"), .valid)
-        XCTAssertEqual(subject.validate("ABC"), .invalid)
+        XCTAssertTrue(subject.validate("").isInvalid)
+        XCTAssertTrue(subject.validate("abc").isValid)
+        XCTAssertTrue(subject.validate("ABC").isInvalid)
 
-        XCTAssertEqual(subject.validate("aB"), .valid)
-        XCTAssertEqual(subject.validate("aBc"), .valid)
-        XCTAssertEqual(subject.validate("AbC"), .valid)
-        XCTAssertEqual(subject.validate("A123abc"), .valid)
+        XCTAssertTrue(subject.validate("aB").isValid)
+        XCTAssertTrue(subject.validate("aBc").isValid)
+        XCTAssertTrue(subject.validate("AbC").isValid)
+        XCTAssertTrue(subject.validate("A123abc").isValid)
     }
 }

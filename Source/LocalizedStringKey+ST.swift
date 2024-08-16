@@ -8,11 +8,19 @@ private extension LocalizedStringKey {
 }
 
 public extension LocalizedStringKey {
-    func stringValue() -> String {
-        return stringValue(with: [])
+    /// extension to get the string value of a LocalizedStringKey
+    /// **IMAPORTANT**: use this methods on your own risk, because it uses private API
+    func stringValue(bundle: Bundle = .main) -> String {
+        return getStringValue(bundle: bundle, with: [])
     }
 
+    /// extension to get the string value of a LocalizedStringKey
+    /// **IMAPORTANT**: use this methods on your own risk, because it uses private API
     func stringValue(bundle: Bundle = .main, with parameters: any CVarArg...) -> String {
+        return getStringValue(bundle: bundle, with: parameters)
+    }
+
+    private func getStringValue(bundle: Bundle = .main, with parameters: [any CVarArg]) -> String {
         guard let key = stringKey else {
             assertionFailure("LocalizedStringKey has no key \(String(describing: self))")
             return String(describing: self)

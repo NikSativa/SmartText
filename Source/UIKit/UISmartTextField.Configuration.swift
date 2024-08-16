@@ -2,40 +2,7 @@
 import Foundation
 import UIKit
 
-public extension SmartTextField {
-    enum State: Equatable {
-        case clear
-        case text(String)
-    }
-
-    #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
-    struct DatePicker {
-        public let calendar: Calendar
-        public let dateFormatter: Foundation.DateFormatter
-        public let minDate: Date
-        public let selecatedDate: Date?
-        public let maxDate: Date
-        public let mode: UIDatePicker.Mode
-        public let eventier: SmartTextField.Eventier?
-
-        public init(calendar: Calendar = .current,
-                    dateFormatter: Foundation.DateFormatter,
-                    minDate: Date = .init(),
-                    selecatedDate: Date?,
-                    maxDate: Date,
-                    mode: UIDatePicker.Mode = .date,
-                    eventier: SmartTextField.Eventier? = nil) {
-            self.calendar = calendar
-            self.dateFormatter = dateFormatter
-            self.minDate = minDate
-            self.selecatedDate = selecatedDate
-            self.maxDate = maxDate
-            self.mode = mode
-            self.eventier = eventier
-        }
-    }
-    #endif
-
+public extension UISmartTextField {
     struct Configuration {
         public enum Placeholder: Equatable, ExpressibleByStringLiteral {
             case text(String)
@@ -58,6 +25,7 @@ public extension SmartTextField {
         public let autocapitalizationType: UITextAutocapitalizationType
         public let autocorrectionType: UITextAutocorrectionType
         public let clearButtonMode: UITextField.ViewMode
+        public let clearsOnBeginEditing: Bool
 
         public init(placeholder: Placeholder? = nil,
                     textFormatter: TextFormatter = .identity,
@@ -68,7 +36,8 @@ public extension SmartTextField {
                     returnKeyType: UIReturnKeyType = .default,
                     autocapitalizationType: UITextAutocapitalizationType = .none,
                     autocorrectionType: UITextAutocorrectionType = .no,
-                    clearButtonMode: UITextField.ViewMode = .never) {
+                    clearButtonMode: UITextField.ViewMode = .never,
+                    clearsOnBeginEditing: Bool = false) {
             self.placeholder = placeholder
             self.textFormatter = textFormatter
             self.textValidator = textValidator
@@ -79,6 +48,7 @@ public extension SmartTextField {
             self.autocapitalizationType = autocapitalizationType
             self.autocorrectionType = autocorrectionType
             self.clearButtonMode = clearButtonMode
+            self.clearsOnBeginEditing = clearsOnBeginEditing
         }
     }
 }

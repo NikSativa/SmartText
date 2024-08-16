@@ -13,4 +13,13 @@ extension XCTestCase {
         XCTAssertEqual(resultArr.map(\.isValid), [false], file: file, line: line)
         XCTAssertEqual(resultArr.flatMap(\.invalidRanges).map { String(str[$0]) }, sub, file: file, line: line)
     }
+
+    func run_formating_test(_ subject: TextFormatter,
+                            _ actual: String,
+                            expected: String,
+                            file: StaticString = #filePath,
+                            line: UInt = #line) throws {
+        let resultStr = subject.format(actual)
+        XCTAssertEqual(resultStr, expected, expected, file: file, line: line)
+    }
 }

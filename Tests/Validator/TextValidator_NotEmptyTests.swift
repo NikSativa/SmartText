@@ -6,6 +6,6 @@ final class TextValidator_NotEmptyTests: XCTestCase {
         let subject: TextValidator = .notEmpty(errorText: "error")
 
         XCTAssertEqual(subject.validate(""), [.init(errorText: .plain("error"), isValid: false)])
-        XCTAssertEqual(subject.validate("some text"), .valid)
+        XCTAssertTrue(subject.validate("some text").isValid)
     }
 }

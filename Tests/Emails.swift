@@ -48,6 +48,8 @@ enum Emails {
         "tomCat@@1blabla.com",
         "!tomCat@@1blabla.com",
         "+tomCat@@1blabla.com",
-        "t!+omCat@@1blabla.com"
+        "t!+omCat@@1blabla.com",
+        "tomCat@blabla..com",
+        "tomCat@blabla...com"
     ]
 }

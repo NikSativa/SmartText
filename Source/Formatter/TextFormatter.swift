@@ -1,6 +1,6 @@
 import Foundation
 
-public final class TextFormatter: ExpressibleByArrayLiteral {
+public final class TextFormatter: ExpressibleByArrayLiteral, TextFormatable {
     private let formatters: [TextFormatable]
 
     public required init(_ formatables: [TextFormatable]) {

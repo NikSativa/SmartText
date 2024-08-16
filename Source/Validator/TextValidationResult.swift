@@ -6,11 +6,6 @@ public struct TextValidationResult: Equatable {
     public let errorText: STString?
     public let isValid: Bool
 
-    public static let valid: Self = .init(invalidRanges: [], errorText: nil, isValid: true)
-    public static func invalid(withErrorText: STString? = nil) -> Self {
-        return .init(invalidRanges: [], errorText: withErrorText, isValid: false)
-    }
-
     public init(invalidRanges: [Range<String.Index>] = [],
                 errorText: STString? = nil,
                 isValid: Bool) {
@@ -22,9 +17,27 @@ public struct TextValidationResult: Equatable {
 
 public extension TextValidationResult {
     static let invalid: Self = .init(isValid: false)
+    static let valid: Self = .init(invalidRanges: [], errorText: nil, isValid: true)
+
+    static func invalid(withError error: STString? = nil) -> Self {
+        return .init(invalidRanges: [], errorText: error, isValid: false)
+    }
+
+    static func invalid(withErrorKey key: LocalizedStringKey? = nil) -> Self {
+        return .init(invalidRanges: [], errorText: key.map(STString.localized), isValid: false)
+    }
+
+    static func invalid(withErrorText text: String? = nil) -> Self {
+        return .init(invalidRanges: [], errorText: text.map(STString.plain), isValid: false)
+    }
 }
 
 public extension [TextValidationResult] {
-    static let invalid: Self = [.invalid]
-    static let valid: Self = []
+    var isValid: Bool {
+        return allSatisfy(\.isValid)
+    }
+
+    var isInvalid: Bool {
+        return contains(where: { $0.isValid == false })
+    }
 }

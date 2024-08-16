@@ -5,13 +5,13 @@ final class TextValidator_MinLengthLimitedTests: XCTestCase {
     func test_spec() {
         let subject: TextValidator = .minLengthLimited(4)
 
-        XCTAssertEqual(subject.validate(""), .invalid)
-        XCTAssertEqual(subject.validate("1"), .invalid)
-        XCTAssertEqual(subject.validate("12"), .invalid)
-        XCTAssertEqual(subject.validate("123"), .invalid)
+        XCTAssertTrue(subject.validate("").isInvalid)
+        XCTAssertTrue(subject.validate("1").isInvalid)
+        XCTAssertTrue(subject.validate("12").isInvalid)
+        XCTAssertTrue(subject.validate("123").isInvalid)
 
-        XCTAssertEqual(subject.validate("1234"), .valid)
-        XCTAssertEqual(subject.validate("12345"), .valid)
-        XCTAssertEqual(subject.validate("123456"), .valid)
+        XCTAssertTrue(subject.validate("1234").isValid)
+        XCTAssertTrue(subject.validate("12345").isValid)
+        XCTAssertTrue(subject.validate("123456").isValid)
     }
 }

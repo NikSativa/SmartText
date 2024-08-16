@@ -2,9 +2,9 @@
 import Foundation
 import UIKit
 
-public final class SmartTextField: UIView {
+public final class UISmartTextField: UIView {
     public let real: UITextField = .init()
-    public var eventier: SmartTextField.Eventier = .init()
+    public var eventier: UISmartTextField.Eventier = .init()
 
     private var dateFormatter = Foundation.DateFormatter()
     private var textFormatter: TextFormatter = .identity
@@ -231,7 +231,7 @@ public final class SmartTextField: UIView {
 
 // MARK: - UITextFieldDelegate
 
-extension SmartTextField: UITextFieldDelegate {
+extension UISmartTextField: UITextFieldDelegate {
     public func textFieldShouldBeginEditing(_: UITextField) -> Bool {
         return eventier.shouldBeginEditing()
     }

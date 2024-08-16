@@ -5,13 +5,13 @@ final class TextValidator_IncludesUppercaseTests: XCTestCase {
     func test_spec() {
         let subject: TextValidator = .includesUppercase()
 
-        XCTAssertEqual(subject.validate(""), .invalid)
-        XCTAssertEqual(subject.validate("abc"), .invalid)
-        XCTAssertEqual(subject.validate("ABC"), .valid)
+        XCTAssertTrue(subject.validate("").isInvalid)
+        XCTAssertTrue(subject.validate("abc").isInvalid)
+        XCTAssertTrue(subject.validate("ABC").isValid)
 
-        XCTAssertEqual(subject.validate("aB"), .valid)
-        XCTAssertEqual(subject.validate("aBc"), .valid)
-        XCTAssertEqual(subject.validate("AbC"), .valid)
-        XCTAssertEqual(subject.validate("A123abc"), .valid)
+        XCTAssertTrue(subject.validate("aB").isValid)
+        XCTAssertTrue(subject.validate("aBc").isValid)
+        XCTAssertTrue(subject.validate("AbC").isValid)
+        XCTAssertTrue(subject.validate("A123abc").isValid)
     }
 }
