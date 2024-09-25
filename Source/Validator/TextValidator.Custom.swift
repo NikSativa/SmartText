@@ -2,7 +2,11 @@ import Foundation
 import SwiftUI
 
 public extension TextValidator {
+    #if swift(>=6.0)
+    typealias CustomValidatorClosure = @Sendable (_ value: String, _ errorText: STString?) -> TextValidationResult
+    #else
     typealias CustomValidatorClosure = (_ value: String, _ errorText: STString?) -> TextValidationResult
+    #endif
 
     static func custom(errorText: String? = nil,
                        _ validator: @escaping CustomValidatorClosure) -> TextValidator {

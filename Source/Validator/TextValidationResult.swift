@@ -41,3 +41,7 @@ public extension [TextValidationResult] {
         return contains(where: { $0.isValid == false })
     }
 }
+
+#if swift(>=6.0)
+extension TextValidationResult: Sendable {}
+#endif

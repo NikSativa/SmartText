@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 // swiftformat:disable all
 import PackageDescription
 
@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "SmartText", targets: ["SmartText"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "2.2.3"))
+        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "3.0.0"))
     ],
     targets: [
         .target(name: "SmartText",
@@ -24,13 +24,19 @@ let package = Package(
                 ],
                 path: "Source",
                 resources: [
-                    .copy("../PrivacyInfo.xcprivacy")
+                    .process("PrivacyInfo.xcprivacy")
+                ],
+                swiftSettings: [
+                    .define("supportsVisionOS", .when(platforms: [.visionOS])),
                 ]),
         .testTarget(name: "SmartTextTests",
                     dependencies: [
                         "SmartText",
                         "SpryKit"
                     ],
-                    path: "Tests")
+                    path: "Tests",
+                    swiftSettings: [
+                        .define("supportsVisionOS", .when(platforms: [.visionOS])),
+                    ])
     ]
 )

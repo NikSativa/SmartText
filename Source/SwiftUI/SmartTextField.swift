@@ -74,7 +74,7 @@ private struct SmartTextField_UIViewRepresentable: UIViewRepresentable {
         let real = UITextField()
         real.inputView = nil
 
-        #if !os(visionOS) && !os(tvOS)
+        #if !supportsVisionOS && !os(tvOS)
         real.inputAccessoryView = configuration.toolbar?()
         #endif
 
@@ -132,12 +132,13 @@ private struct SmartTextField_UIViewRepresentable: UIViewRepresentable {
         uiView.delegate = nil
         coordinator.real = nil
 
-        #if !os(visionOS) && !os(tvOS)
+        #if !supportsVisionOS && !os(tvOS)
         uiView.inputAccessoryView = nil
         #endif
     }
 }
 
+@MainActor
 private final class SmartTextField_Coordinator: NSObject {
     @Binding private var text: String
     @Binding private var errors: [TextValidationResult]
@@ -241,5 +242,4 @@ extension SmartTextField_Coordinator: UITextFieldDelegate {
         return false
     }
 }
-
 #endif

@@ -1,4 +1,4 @@
-#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || os(visionOS)
+#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || supportsVisionOS
 import Foundation
 import UIKit
 
@@ -42,7 +42,7 @@ public final class UISmartTextField: UIView {
         return textValidator.validate(real.text ?? "")
     }
 
-    #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
+    #if os(iOS) || targetEnvironment(macCatalyst) || supportsVisionOS
     public func configure(with viewState: DatePicker) {
         let datePicker: UIDatePicker
         if let oldDatePicker = real.inputView as? UIDatePicker {
@@ -179,7 +179,7 @@ public final class UISmartTextField: UIView {
     }
     #endif
 
-    #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
+    #if os(iOS) || targetEnvironment(macCatalyst) || supportsVisionOS
     @objc
     private func dateChanged(sender: UIDatePicker) {
         real.text = dateFormatter.string(from: sender.date)
@@ -276,7 +276,7 @@ extension UISmartTextField: UITextFieldDelegate {
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        #if os(iOS) || targetEnvironment(macCatalyst) || os(visionOS)
+        #if os(iOS) || targetEnvironment(macCatalyst) || supportsVisionOS
         if let datePicker = textField.inputView as? UIDatePicker {
             let date = datePicker.date
             eventier.dateDidChanged(date)

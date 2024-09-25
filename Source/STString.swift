@@ -21,3 +21,7 @@ public extension String {
         return .plain(self)
     }
 }
+
+#if swift(>=6.0)
+extension STString: @unchecked Sendable {}
+#endif

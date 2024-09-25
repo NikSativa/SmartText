@@ -1,4 +1,4 @@
-#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || os(visionOS)
+#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || supportsVisionOS
 import Foundation
 import UIKit
 

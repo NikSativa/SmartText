@@ -29,7 +29,7 @@ public extension SmartTextField {
         public let checkErrorOnEditing: Bool
         public let checkErrorOnAppear: Bool
 
-        #if os(visionOS) || os(tvOS)
+        #if supportsVisionOS || os(tvOS)
         /// - **checkErrorOnEditing** if true, textValidator will be called on every editing change and on end editing. If false, it will be called only on end editing.
         public init(placeholder: Placeholder? = nil,
                     textFormatter: TextFormatter = .identity,

@@ -1,15 +1,21 @@
 import Foundation
 
 public extension TextFormatter {
-    static func custom(_ formatter: @escaping (String) -> String) -> TextFormatter {
+    #if swift(>=6.0)
+    typealias CustomFormatterClosure = @Sendable (String) -> String
+    #else
+    typealias CustomFormatterClosure = (String) -> String
+    #endif
+
+    static func custom(_ formatter: @escaping CustomFormatterClosure) -> TextFormatter {
         return CustomFormatter(formatter: formatter).toFormatter()
     }
 }
 
 private struct CustomFormatter: TextFormatable {
-    private let formatter: (String) -> String
+    private let formatter: TextFormatter.CustomFormatterClosure
 
-    init(formatter: @escaping (String) -> String) {
+    init(formatter: @escaping TextFormatter.CustomFormatterClosure) {
         self.formatter = formatter
     }
 

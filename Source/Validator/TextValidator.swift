@@ -45,3 +45,7 @@ public final class TextValidator: ExpressibleByArrayLiteral {
         return .init(validators)
     }
 }
+
+#if swift(>=6.0)
+extension TextValidator: Sendable {}
+#endif

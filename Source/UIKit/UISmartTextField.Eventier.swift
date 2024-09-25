@@ -1,4 +1,4 @@
-#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || os(visionOS)
+#if os(iOS) || targetEnvironment(macCatalyst) || os(tvOS) || supportsVisionOS
 import Foundation
 
 // MARK: - SmartTextField.Eventier
@@ -41,7 +41,7 @@ public extension UISmartTextField {
             self.clearButton = clearButton
         }
 
-        #elseif os(visionOS)
+        #elseif supportsVisionOS
         public var dateDidChanged: (_ newValue: Date) -> Void
         public required init(shouldBeginEditing: @escaping () -> Bool = { true },
                              didBeginEditing: @escaping () -> Void = {},

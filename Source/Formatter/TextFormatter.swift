@@ -44,3 +44,7 @@ public final class TextFormatter: ExpressibleByArrayLiteral, TextFormatable {
         return .init(combinedValidations)
     }
 }
+
+#if swift(>=6.0)
+extension TextFormatter: Sendable {}
+#endif
