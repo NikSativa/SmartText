@@ -223,8 +223,10 @@ extension SmartTextField_Coordinator: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_: UITextField) {
-        checkError()
-        eventier.didEndEditing()
+        DispatchQueue.main.async { [weak self] in
+            self?.checkError()
+            self?.eventier.didEndEditing()
+        }
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
