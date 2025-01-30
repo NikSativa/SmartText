@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "SmartText", targets: ["SmartText"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "3.0.1"))
+        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMinor(from: "3.0.2"))
     ],
     targets: [
         .target(name: "SmartText",
