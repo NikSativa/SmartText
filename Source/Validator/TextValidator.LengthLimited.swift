@@ -21,12 +21,12 @@ private struct LengthLimitedValidation: TextValidatable {
             return .valid
         }
 
-        let ranges: [Range<String.Index>]
-        if limitCharacters < value.count {
-            ranges = [value.index(value.startIndex, offsetBy: limitCharacters)..<value.endIndex]
-        } else {
-            ranges = []
-        }
+        let ranges: [Range<String.Index>] =
+            if limitCharacters < value.count {
+                [value.index(value.startIndex, offsetBy: limitCharacters)..<value.endIndex]
+            } else {
+                []
+            }
         return .init(invalidRanges: ranges,
                      errorText: errorText,
                      isValid: false)

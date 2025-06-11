@@ -69,9 +69,11 @@ public final class UISmartTextField: UIView {
         case .text(let string):
             real.attributedPlaceholder = nil
             real.placeholder = string
+
         case .attributed(let string):
             real.placeholder = nil
             real.attributedPlaceholder = string
+
         case .none:
             real.placeholder = nil
             real.attributedPlaceholder = nil

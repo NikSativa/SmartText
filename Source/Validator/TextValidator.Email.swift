@@ -74,10 +74,11 @@ private struct EmailValidation: TextValidatable {
             "@.", ".@",
             ".-", "-.",
             "@@"
-        ].map {
-            value.ranges(of: $0)
-        }
-        .flatMap { $0 }
+        ]
+            .map {
+                value.ranges(of: $0)
+            }
+            .flatMap { $0 }
 
         let combinations = common + at + points + weirdPairs
         let result = combinations

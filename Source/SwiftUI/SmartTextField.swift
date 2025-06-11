@@ -4,8 +4,10 @@ import SwiftUI
 import UIKit
 
 public struct SmartTextField: View {
-    @Binding private var text: String
-    @Binding private var errors: [TextValidationResult]
+    @Binding
+    private var text: String
+    @Binding
+    private var errors: [TextValidationResult]
     private let configuration: SmartTextField.Configuration
     private let eventier: SmartTextField.Eventier = .init()
 
@@ -55,8 +57,10 @@ public extension SmartTextField {
 
 /// additional wrapper to hide interface of coordinator
 private struct SmartTextField_UIViewRepresentable: UIViewRepresentable {
-    @Binding private(set) var text: String
-    @Binding private(set) var errors: [TextValidationResult]
+    @Binding
+    private(set) var text: String
+    @Binding
+    private(set) var errors: [TextValidationResult]
     private let configuration: SmartTextField.Configuration
     private let eventier: SmartTextField.Eventier
 
@@ -82,9 +86,11 @@ private struct SmartTextField_UIViewRepresentable: UIViewRepresentable {
         case .text(let string):
             real.attributedPlaceholder = nil
             real.placeholder = string
+
         case .attributed(let string):
             real.placeholder = nil
             real.attributedPlaceholder = string
+
         case .none:
             real.placeholder = nil
             real.attributedPlaceholder = nil
@@ -140,8 +146,10 @@ private struct SmartTextField_UIViewRepresentable: UIViewRepresentable {
 
 @MainActor
 private final class SmartTextField_Coordinator: NSObject {
-    @Binding private var text: String
-    @Binding private var errors: [TextValidationResult]
+    @Binding
+    private var text: String
+    @Binding
+    private var errors: [TextValidationResult]
 
     private let textFormatter: TextFormatter
     private let textValidator: TextValidator
