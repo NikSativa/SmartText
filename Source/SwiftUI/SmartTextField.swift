@@ -96,8 +96,16 @@ private struct SmartTextField_UIViewRepresentable: UIViewRepresentable {
             real.attributedPlaceholder = nil
         }
 
+        real.font = configuration.font
+        real.textColor = configuration.textColor
+        real.tintColor = configuration.tintColor
+        real.textAlignment = configuration.textAlignment
+        real.backgroundColor = configuration.backgroundColor
+        real.borderStyle = configuration.borderStyle
         real.textContentType = configuration.textContentType
         real.isSecureTextEntry = configuration.isSecureTextEntry
+        real.enablesReturnKeyAutomatically = configuration.enablesReturnKeyAutomatically
+        real.adjustsFontForContentSizeCategory = configuration.adjustsFontForContentSizeCategory
         real.keyboardType = configuration.keyboardType
         real.returnKeyType = configuration.returnKeyType
         real.autocapitalizationType = configuration.autocapitalizationType
@@ -125,6 +133,22 @@ private struct SmartTextField_UIViewRepresentable: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UITextField, context: Context) {
+        uiView.font = configuration.font
+        uiView.textColor = configuration.textColor
+        uiView.tintColor = configuration.tintColor
+        uiView.textAlignment = configuration.textAlignment
+        uiView.backgroundColor = configuration.backgroundColor
+        uiView.borderStyle = configuration.borderStyle
+        uiView.textContentType = configuration.textContentType
+        uiView.isSecureTextEntry = configuration.isSecureTextEntry
+        uiView.enablesReturnKeyAutomatically = configuration.enablesReturnKeyAutomatically
+        uiView.adjustsFontForContentSizeCategory = configuration.adjustsFontForContentSizeCategory
+        uiView.keyboardType = configuration.keyboardType
+        uiView.returnKeyType = configuration.returnKeyType
+        uiView.autocapitalizationType = configuration.autocapitalizationType
+        uiView.autocorrectionType = configuration.autocorrectionType
+        uiView.clearsOnBeginEditing = configuration.clearsOnBeginEditing
+
         if uiView.text != text {
             uiView.text = configuration.textFormatter.format(text)
             DispatchQueue.main.async {

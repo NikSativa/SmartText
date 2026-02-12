@@ -86,6 +86,7 @@ public final class UISmartTextField: UIView {
         real.autocapitalizationType = viewState.autocapitalizationType
         real.autocorrectionType = viewState.autocorrectionType
         real.clearButtonMode = viewState.clearButtonMode
+        real.clearsOnBeginEditing = viewState.clearsOnBeginEditing
 
         textFormatter = viewState.textFormatter
         textValidator = viewState.textValidator

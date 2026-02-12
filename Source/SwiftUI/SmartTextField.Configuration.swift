@@ -20,6 +20,15 @@ public extension SmartTextField {
         public let textContentType: UITextContentType?
         public let isSecureTextEntry: Bool
 
+        public let font: UIFont?
+        public let textColor: UIColor?
+        public let tintColor: UIColor?
+        public let textAlignment: NSTextAlignment
+        public let backgroundColor: UIColor?
+        public let borderStyle: UITextField.BorderStyle
+        public let enablesReturnKeyAutomatically: Bool
+        public let adjustsFontForContentSizeCategory: Bool
+
         public let keyboardType: UIKeyboardType
         public let returnKeyType: UIReturnKeyType
         public let autocapitalizationType: UITextAutocapitalizationType
@@ -36,6 +45,14 @@ public extension SmartTextField {
                     textValidator: TextValidator = .identity,
                     textContentType: UITextContentType? = nil,
                     isSecureTextEntry: Bool = false,
+                    font: UIFont? = nil,
+                    textColor: UIColor? = nil,
+                    tintColor: UIColor? = nil,
+                    textAlignment: NSTextAlignment = .natural,
+                    backgroundColor: UIColor? = nil,
+                    borderStyle: UITextField.BorderStyle = .none,
+                    enablesReturnKeyAutomatically: Bool = false,
+                    adjustsFontForContentSizeCategory: Bool = true,
                     keyboardType: UIKeyboardType = .default,
                     returnKeyType: UIReturnKeyType = .default,
                     autocapitalizationType: UITextAutocapitalizationType = .none,
@@ -48,6 +65,14 @@ public extension SmartTextField {
             self.textValidator = textValidator
             self.textContentType = textContentType
             self.isSecureTextEntry = isSecureTextEntry
+            self.font = font
+            self.textColor = textColor
+            self.tintColor = tintColor
+            self.textAlignment = textAlignment
+            self.backgroundColor = backgroundColor
+            self.borderStyle = borderStyle
+            self.enablesReturnKeyAutomatically = enablesReturnKeyAutomatically
+            self.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory
             self.keyboardType = keyboardType
             self.returnKeyType = returnKeyType
             self.autocapitalizationType = autocapitalizationType
@@ -65,6 +90,14 @@ public extension SmartTextField {
                     textValidator: TextValidator = .identity,
                     textContentType: UITextContentType? = nil,
                     isSecureTextEntry: Bool = false,
+                    font: UIFont? = nil,
+                    textColor: UIColor? = nil,
+                    tintColor: UIColor? = nil,
+                    textAlignment: NSTextAlignment = .natural,
+                    backgroundColor: UIColor? = nil,
+                    borderStyle: UITextField.BorderStyle = .none,
+                    enablesReturnKeyAutomatically: Bool = false,
+                    adjustsFontForContentSizeCategory: Bool = true,
                     keyboardType: UIKeyboardType = .default,
                     returnKeyType: UIReturnKeyType = .default,
                     autocapitalizationType: UITextAutocapitalizationType = .none,
@@ -78,6 +111,14 @@ public extension SmartTextField {
             self.textValidator = textValidator
             self.textContentType = textContentType
             self.isSecureTextEntry = isSecureTextEntry
+            self.font = font
+            self.textColor = textColor
+            self.tintColor = tintColor
+            self.textAlignment = textAlignment
+            self.backgroundColor = backgroundColor
+            self.borderStyle = borderStyle
+            self.enablesReturnKeyAutomatically = enablesReturnKeyAutomatically
+            self.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory
             self.keyboardType = keyboardType
             self.returnKeyType = returnKeyType
             self.autocapitalizationType = autocapitalizationType
