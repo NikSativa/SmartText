@@ -1,22 +1,22 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.10
 // swiftformat:disable all
 import PackageDescription
 
 let package = Package(
     name: "SmartText",
     platforms: [
-        .iOS(.v13),
-        .macOS(.v11),
-        .macCatalyst(.v13),
+        .iOS(.v16),
+        .macOS(.v14),
+        .macCatalyst(.v16),
         .visionOS(.v1),
-        .tvOS(.v13),
-        .watchOS(.v6)
+        .tvOS(.v16),
+        .watchOS(.v9)
     ],
     products: [
         .library(name: "SmartText", targets: ["SmartText"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/SpryKit.git", from: "3.0.4")
+        .package(url: "https://github.com/NikSativa/SpryKit.git", from: "3.1.0")
     ],
     targets: [
         .target(name: "SmartText",
