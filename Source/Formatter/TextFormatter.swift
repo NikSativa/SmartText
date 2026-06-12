@@ -1,6 +1,6 @@
 import Foundation
 
-public final class TextFormatter: ExpressibleByArrayLiteral, TextFormatable {
+public final class TextFormatter: ExpressibleByArrayLiteral, TextFormatable, @unchecked Sendable {
     private let formatters: [TextFormatable]
 
     public required init(_ formatables: [TextFormatable]) {
@@ -44,7 +44,3 @@ public final class TextFormatter: ExpressibleByArrayLiteral, TextFormatable {
         return .init(combinedValidations)
     }
 }
-
-#if swift(>=6.0)
-extension TextFormatter: Sendable {}
-#endif

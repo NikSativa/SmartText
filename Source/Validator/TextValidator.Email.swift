@@ -11,10 +11,9 @@ public extension TextValidator {
     }
 }
 
-private struct EmailValidation: TextValidatable {
+private struct EmailValidation: TextValidatable, @unchecked Sendable {
     let errorText: STString?
 
-    #if swift(>=6.0)
     private nonisolated(unsafe) static let emailPredicate: NSPredicate = {
         let emailStartValidCharacters = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+"
         let emailLastGroupValidCharacters = "(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
@@ -31,24 +30,6 @@ private struct EmailValidation: TextValidatable {
         ].joined()
         return NSPredicate(format: "SELF MATCHES %@", emailRegEx)
     }()
-    #else
-    private static let emailPredicate: NSPredicate = {
-        let emailStartValidCharacters = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+"
-        let emailLastGroupValidCharacters = "(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
-        let emailDomainStartValidCharacter = "[A-Za-z0-9]"
-        let emailDomainEndingValidCharacters = "([A-Za-z0-9-]*[A-Za-z0-9])*"
-        let emailDomainExtensionValidCharacters = "(\\.[A-Za-z]{2,}){1,}"
-        let emailRegEx = [
-            emailStartValidCharacters,
-            emailLastGroupValidCharacters,
-            "@",
-            emailDomainStartValidCharacter,
-            emailDomainEndingValidCharacters,
-            emailDomainExtensionValidCharacters
-        ].joined()
-        return NSPredicate(format: "SELF MATCHES %@", emailRegEx)
-    }()
-    #endif
 
     private static let aSet = CharacterSet(charactersIn: "@._-")
         .union(.lowercaseLetters)
@@ -94,7 +75,3 @@ private struct EmailValidation: TextValidatable {
                      isValid: false)
     }
 }
-
-#if swift(>=6.0)
-extension EmailValidation: @unchecked Sendable {}
-#endif

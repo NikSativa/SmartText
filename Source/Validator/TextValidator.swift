@@ -1,6 +1,6 @@
 import Foundation
 
-public final class TextValidator: ExpressibleByArrayLiteral {
+public final class TextValidator: ExpressibleByArrayLiteral, Sendable {
     public typealias Eventier = (TextValidator, TextValidationResult) -> Void
 
     private let validators: [TextValidatable]
@@ -45,7 +45,3 @@ public final class TextValidator: ExpressibleByArrayLiteral {
         return .init(validators)
     }
 }
-
-#if swift(>=6.0)
-extension TextValidator: Sendable {}
-#endif

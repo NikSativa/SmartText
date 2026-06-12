@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-public enum STString: Equatable {
+public enum STString: Equatable, @unchecked Sendable {
     case plain(String)
     case localized(LocalizedStringKey)
 
@@ -21,7 +21,3 @@ public extension String {
         return .plain(self)
     }
 }
-
-#if swift(>=6.0)
-extension STString: @unchecked Sendable {}
-#endif

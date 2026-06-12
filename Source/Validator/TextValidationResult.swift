@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-public struct TextValidationResult: Equatable {
+public struct TextValidationResult: Equatable, Sendable {
     public let invalidRanges: [Range<String.Index>]
     public let errorText: STString?
     public let isValid: Bool
@@ -41,7 +41,3 @@ public extension [TextValidationResult] {
         return contains(where: { $0.isValid == false })
     }
 }
-
-#if swift(>=6.0)
-extension TextValidationResult: Sendable {}
-#endif
